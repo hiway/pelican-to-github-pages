@@ -23,19 +23,21 @@ pelican ${PELICAN_CONTENT_FOLDER:=content} -s ${PELICAN_CONFIG_FILE:=publishconf
 
 echo 'Publishing to GitHub Pages 📤 '
 # git init
-git remote add deploy "$remote_repo"
-git checkout $remote_branch || git checkout --orphan $remote_branch
-git config user.name "${GITHUB_ACTOR}"
-git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+# git remote add deploy "$remote_repo"
+# git checkout $remote_branch || git checkout --orphan $remote_branch
+# git config user.name "${GITHUB_ACTOR}"
+# git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 if [ "$GH_PAGES_CNAME" != "none" ]
 then
     echo "$GH_PAGES_CNAME" > CNAME
 fi
-git add .
+# git add .
 
-echo -n 'Files to Commit:' && ls -l | wc -l
-git commit -m "[ci skip] Automated deployment to GitHub Pages on $(date +%s%3N)"
-git push deploy $remote_branch --force
-rm -fr .git
+# echo -n 'Files to Commit:' && ls -l | wc -l
+# git commit -m "[ci skip] Automated deployment to GitHub Pages on $(date +%s%3N)"
+# git push deploy $remote_branch --force
+# rm -fr .git
+
+make github
 
 echo 'Successfully 🎉🕺💃 🎉 deployed to interwebs 🕸'
